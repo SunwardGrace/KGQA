@@ -1,0 +1,41 @@
+{
+  "version": "1.0",
+  "description": "CMeKG医学知识图谱关系与实体Schema定义",
+  "entity_types": [
+    {"id": "Disease", "label": "疾病", "color": "#ffb3b3", "aliases": ["d", "疾病", "DIS", "DISEASE"]},
+    {"id": "Symptom", "label": "症状", "color": "#b3d9ff", "aliases": ["s", "症状", "SYM", "SYMPTOM"]},
+    {"id": "Drug", "label": "药物", "color": "#b3ffb3", "aliases": ["y", "药物", "DRUG"]},
+    {"id": "Exam", "label": "检查", "color": "#ffffb3", "aliases": ["i", "检验项目", "EXAM", "CHECK"]},
+    {"id": "Body", "label": "身体部位", "color": "#ffccb3", "aliases": ["b", "身体", "BODY"]},
+    {"id": "Procedure", "label": "医疗程序", "color": "#d9b3ff", "aliases": ["p", "医疗程序", "PROCEDURE"]},
+    {"id": "Equipment", "label": "医疗设备", "color": "#b3ffff", "aliases": ["e", "医疗设备", "EQUIPMENT"]},
+    {"id": "Department", "label": "科室", "color": "#ffb3e6", "aliases": ["k", "科室", "DEPARTMENT"]},
+    {"id": "Microbe", "label": "微生物", "color": "#c2f0c2", "aliases": ["m", "微生物类", "MICROBE"]},
+    {"id": "Indicator", "label": "指标", "color": "#e6b3ff", "aliases": ["INDICATOR"]}
+  ],
+  "relation_types": [
+    {"id": "HAS_SYMPTOM", "label": "临床表现", "head_type": "Disease", "tail_type": "Symptom", "aliases": ["临床表现", "相关症状", "症状"]},
+    {"id": "RECOMMENDED_DRUG", "label": "治疗药物", "head_type": "Disease", "tail_type": "Drug", "aliases": ["治疗", "用药", "推荐药物"]},
+    {"id": "TREATS", "label": "治疗", "head_type": "Drug", "tail_type": "Disease", "aliases": ["适应症", "主治", "功能主治"]},
+    {"id": "NEEDS_EXAM", "label": "检查项目", "head_type": "Disease", "tail_type": "Exam", "aliases": ["检查", "诊断检查"]},
+    {"id": "HAS_INDICATOR", "label": "指标", "head_type": "Exam", "tail_type": "Indicator", "aliases": ["指标", "检验指标"]},
+    {"id": "CONTRAINDICATED_FOR", "label": "禁忌", "head_type": "Drug", "tail_type": "Disease", "aliases": ["禁忌", "禁用"]},
+    {"id": "CAUSES", "label": "病因", "head_type": "Entity", "tail_type": "Disease", "aliases": ["病因", "致病因素"]},
+    {"id": "COMPLICATION", "label": "并发症", "head_type": "Disease", "tail_type": "Disease", "aliases": ["并发症", "合并症"]},
+    {"id": "RELATED_DISEASE", "label": "相关疾病", "head_type": "Disease", "tail_type": "Disease", "aliases": ["相关疾病", "关联疾病"]},
+    {"id": "AFFECTS_BODY", "label": "累及部位", "head_type": "Disease", "tail_type": "Body", "aliases": ["累及部位", "发病部位"]},
+    {"id": "DOSAGE", "label": "用法用量", "head_type": "Drug", "tail_type": "Entity", "aliases": ["用法用量", "剂量"]},
+    {"id": "ADVERSE_REACTION", "label": "不良反应", "head_type": "Drug", "tail_type": "Symptom", "aliases": ["不良反应", "副作用"]},
+    {"id": "COMPOSITION", "label": "成份", "head_type": "Drug", "tail_type": "Entity", "aliases": ["成份", "组成"]},
+    {"id": "DRUG_INTERACTION", "label": "药物相互作用", "head_type": "Drug", "tail_type": "Drug", "aliases": ["药物相互作用", "相互作用"]},
+    {"id": "PRECAUTION", "label": "注意事项", "head_type": "Drug", "tail_type": "Entity", "aliases": ["注意事项"]},
+    {"id": "BELONGS_TO", "label": "所属科室", "head_type": "Disease", "tail_type": "Department", "aliases": ["所属科室", "就诊科室"]},
+    {"id": "PERFORMED_BY", "label": "执行科室", "head_type": "Exam", "tail_type": "Department", "aliases": ["执行科室"]},
+    {"id": "USES_EQUIPMENT", "label": "使用设备", "head_type": "Procedure", "tail_type": "Equipment", "aliases": ["使用设备"]},
+    {"id": "CAUSED_BY_MICROBE", "label": "致病微生物", "head_type": "Disease", "tail_type": "Microbe", "aliases": ["致病微生物", "病原体"]},
+    {"id": "EFFICACY", "label": "功效", "head_type": "Drug", "tail_type": "Entity", "aliases": ["功效", "药效"]},
+    {"id": "PROPERTY", "label": "性味", "head_type": "Drug", "tail_type": "Entity", "aliases": ["性味", "药性"]},
+    {"id": "STORAGE", "label": "贮藏", "head_type": "Drug", "tail_type": "Entity", "aliases": ["贮藏", "保存方法"]},
+    {"id": "RELATED_TO", "label": "相关", "head_type": "Entity", "tail_type": "Entity", "aliases": ["相关", "关联"]}
+  ]
+}

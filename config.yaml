@@ -1,0 +1,83 @@
+neo4j:
+  uri: "bolt://localhost:7687"
+  user: "neo4j"
+  password: "neo4j_password"
+
+fusion:
+  fuzzy_threshold: 90
+  enable_fuzzy: false
+  allow_multi_relations:
+    - "HAS_SYMPTOM"
+    - "RECOMMENDED_DRUG"
+    - "RECOMMEND_DRUG"
+    - "COMMON_DRUG"
+    - "NEEDS_EXAM"
+    - "HAS_INDICATOR"
+    - "TREATS"
+    - "CONTRAINDICATED_FOR"
+    - "COMPLICATION"
+    - "HAS_COMPLICATION"
+    - "RELATED_DISEASE"
+    - "AFFECTS_BODY"
+    - "ADVERSE_REACTION"
+    - "DRUG_INTERACTION"
+    - "BELONGS_TO"
+    - "CAUSED_BY_MICROBE"
+    - "DO_EAT"
+    - "NOT_EAT"
+    - "RECOMMEND_EAT"
+    - "DEPT_L1"
+    - "DEPT_L2"
+    - "DEPT_L3"
+    - "TREATED_IN"
+    - "HAS_TREATMENT"
+    - "PROP_DESC"
+    - "PROP_CAUSE"
+    - "PROP_PREVENT"
+  source_weights:
+    default: 1.0
+    CMeKG: 1.2
+    CM3KG_DiseaseCSV: 1.0
+    CM3KG_MedicalCSV: 1.0
+    rule: 0.8
+  scoring:
+    frequency_weight: 0.3
+    source_weight: 0.3
+    confidence_weight: 0.4
+
+schema:
+  path: "data/schema/medical_schema.json"
+
+nlp:
+  ner:
+    # Use "models/ner_cmeee" after training, or "bert-base-chinese" for base model
+    model: "models/ner_cmeee"
+    device: "cuda:0"  # Use GPU for inference
+    min_score: 0.5
+  relation:
+    model: null
+    device: "cpu"
+    min_score: 0.5
+
+reasoning:
+  enabled: true
+  max_inferences: 1000
+
+eval:
+  samples_per_type: 50
+  random_seed: 42
+  output_dir: "reports"
+
+api:
+  host: "0.0.0.0"
+  port: 8000
+  default_top_k: 10
+
+llm:
+  enabled: true
+  api_base: "http://127.0.0.1:8317/v1/chat/completions"  # 替换为你的 API 地址
+  api_key: "sk-2495886784"  # 替换为你的 API Key
+  model: "gemini-3-flash-preview"  # 模型名称
+  max_tokens: 1024
+  temperature: 0.7
+  timeout: 30.0
