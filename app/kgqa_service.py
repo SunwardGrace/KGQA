@@ -188,7 +188,7 @@ class KGQAService:
         answers = []
         has_conflict = False
         for r in results:
-            conflict = r.get("conflict", False)
+            conflict = bool(r.get("conflict"))
             if conflict:
                 has_conflict = True
             source_str = r.get("source", "")
